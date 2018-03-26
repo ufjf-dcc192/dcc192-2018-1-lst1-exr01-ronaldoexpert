@@ -3,6 +3,7 @@ import com.sun.xml.ws.policy.privateutil.PolicyUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ListaPessoasServlet", urlPatterns = {"/index.html"})
-public class ListaFrutasServlet extends HttpServlet {
+public class ListaFrutasServlet extends HttpServlet implements Comparator<String>{
 
     private List<String> frutas;
 
@@ -27,6 +28,12 @@ public class ListaFrutasServlet extends HttpServlet {
         frutas.add("Maracuja");
         frutas.add("Abacaxi");
     }
+    
+    @Override
+    public int compare(String a, String b){        
+        return a.length() - b.length();
+    }
+        
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,8 +44,10 @@ public class ListaFrutasServlet extends HttpServlet {
 
             if("alfa".equals(comand)){
                 Collections.sort(frutas);        
-            }
-            if ("rand".equals(comand)){
+            }else if ("tam".equals(comand)){
+                //Collections.sort(frutas, (a,b)-> a.length()-b.length());
+                Collections.sort(frutas, this);
+            }else{
                 Collections.shuffle(frutas);
             }
             
