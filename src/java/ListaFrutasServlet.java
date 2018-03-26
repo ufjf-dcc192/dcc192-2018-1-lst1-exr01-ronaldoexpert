@@ -70,7 +70,7 @@ public class ListaFrutasServlet extends HttpServlet implements Comparator<String
             out.println("</ul>");
             out.println("<a href = '?comando=alfa'>Ordem Alfabetica</a><BR>");            
             out.println("<a href = '?comando=rand'>Ordem Aleatória</a><BR>");
-            out.println("<a href = '?comando=qtdletras'>Ordem Tamanho Palavra</a><BR>");
+            out.println("<a href = '?comando=tam'>Ordem Tamanho Palavra</a><BR>");
             out.println("</body>");
             out.println("</html>");
         }       
